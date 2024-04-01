@@ -1,0 +1,49 @@
+{% include "Navbar.html" %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% for message in messages  %}  
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong></strong> {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<div class="container w-75">
+    <div class="my-3">
+        <div class="card text-center">
+            <div class="card-header">
+              Donate For Future Blood Camp 
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Give blood, give plasma, share life, share often</h5>
+              <div class="card m-auto border-none" style="width: 18rem;">
+                <img src="../static/images/2762023161833920.png" class="card-img-top" alt="...">
+              </div>
+              <p class="card-text">"Your kindness today can bring hope and change countless lives tomorrow."</p>
+              <a href="{% url 'Payment_Donate' %}" class="btn btn-success">Donate<i class="fa-solid fa-hand-holding-medical"></i></a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                "Your generosity fuels hope and transforms lives – keep giving!"
+            </div>
+          </div>
+    </div>
+    <h2>Write Your FeedBack </h2>
+    <div class="mb-3">
+       <form action="{% url  'feedback' %}" method="POST">
+        {% csrf_token %}
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" name="FeedBack_email" required class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label"> textarea</label>
+        <textarea class="form-control" name="FeedBack" required id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <button class="btn btn-success">Submit</button>
+
+       </form>
+
+</div>
+
+{% endblock content %}
+
+

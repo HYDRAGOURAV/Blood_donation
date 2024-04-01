@@ -1,0 +1,120 @@
+{% include "Navbar.html" %} {% block Update&delete %}
+{% for message in messages  %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+<strong>{{message}}</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<div class="container my-3">
+  <h1>Donor Delete and Update:</h1>
+  <div class="w-75 p-3 m-auto">
+    <form class="my-3">
+      {% csrf_token %}
+
+      <div class="row">
+        <div class="col">
+          <label for="inputName" class="form-label">Name</label>
+          <input type="text" name="First_Name" class="form-control" placeholder="" required aria-label="First name"
+            value="{{i.name}}" />
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col">
+          <label for="Contact" class="form-label">Contact <span class="text-danger">*</span></label>
+          <input type="number" name="Contact" value="{{i.contact_number}}" required class="form-control" placeholder=""
+            aria-label="contact Number" />
+        </div>
+        <div class="col">
+          <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+          <input type="email" value="{{i.email}}" name="email" required class="form-control" placeholder=""
+            aria-label="email" />
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Address</label>
+          <input type="text" value="{{i.address}}" name="address" required class="form-control" id="inputAddress"
+            placeholder="" />
+        </div>
+
+        <div class="row my-2">
+          <div class="col">
+            <label for="city" class="form-label">City <span class="text-danger">*</span></label>
+            <input type="text" value="{{i.City}}" name="City" required class="form-control" placeholder=""
+              aria-label="First name" />
+          </div>
+          <div class="col">
+            <label for="age" class="form-label">age</label>
+            <input type="number" value="{{i.age}}" name="age" required class="form-control" placeholder=""
+              aria-label="age" />
+          </div>
+        </div>
+        <div class="row my-2">
+          <div class="col">
+            <label for="inputState" class="form-label">State</label>
+            <select id="inputState" name="State" required class="form-select">
+              <option name="" value="{{i.State}}" id="">{{i.State}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="inputState" class="form-label">Select blood group <span class="text-danger">*</span></label>
+            <select id="inputState" name="Blood_Group" required class="form-select">
+              <option name="" value="{{i.Blood_Group}}" id="">
+                {{i.Blood_Group}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 my-4">
+          <div class="form-check">
+            <input class="form-check-input" required type="checkbox" id="gridCheck" />
+            <label class="form-check-label" for="gridCheck">
+              Do You Really want To perform This action
+            </label>
+          </div>
+        </div>
+        <div class="col-12 my-2">
+          <button type="submit" class="btn btn-primary">Register</button>
+
+        </div>
+      </div>
+    </form>
+
+    <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+      aria-controls="offcanvasTop">
+      Delete
+    </button>
+
+    <div class="offcanvas offcanvas-top h-50" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasTopLabel">
+          welcome to Blood donation Admin Panel This is for <span class="text-danger">Delete</span> request
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <h3>Hello <span class="text-danger">{{i.name}}</span></h3>
+        <p class="text-warning mx-3">Hi..... Your could Not Delete Your Data Directly you Can request to Admin To delete
+          The Data </p>
+        <form action="{% url 'delete_data_req' %}" method="POST">
+          {% csrf_token %}
+          
+          <input type="number"  value={{i.id}}   name="SNo">
+          <input type="text" readonly value={{i.name}}  name="Delete_Name_req">
+          <input type="number" readonly value={{i.contact_number}}  name="Delete_Contact_req">
+          <input type="email" readonly value={{i.email}}  name="Delete_EMAIL_req">
+          <input type="text" readonly value={{i.City}}  name="Delete_req_city">
+          <input type="text" readonly value={{i.address}}  name="Delete_req_address">
+          <input type="text" readonly value={{i.Blood_Group}}  name="Delete_req_Blood_Group">
+          <br>
+          <textarea type="textarea" rows="4" name="Delete_Reason" cols="50" class="my-2" placeholder="Write a Valid reaseon to delete Data "
+            required></textarea>
+
+          <button class=" mx-3 btn btn-danger"> request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock Update&delete %}

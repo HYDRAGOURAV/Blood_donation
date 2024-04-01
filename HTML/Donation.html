@@ -1,0 +1,67 @@
+{% include "Navbar.html" %}
+{% block content %}
+<div class="container d-inline d-flex justify-content-center align-items-center h-75">
+    <div class="card  my-5" style="width: 18rem;">
+        <img src="../static/images/Save-Life-India.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <form method="POST"  action="{% url 'Donate_money' %}">
+            {% csrf_token %}            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Name</label>
+              <input type="text" name="D_name" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" name="D_email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Amount</label>
+              <input type="Number" name="D_Amount" required class="form-control" id="exampleInputPassword1">
+            </div>
+
+            <div class="mb-3 form-check">
+              <input type="checkbox" required class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">confirm Payment</label>
+            </div>
+           <input type="submit"  class="btn btn-success" value="Donate">
+           
+          </form>
+          <input type="submit" id="rzp-button1" class="btn btn-success" value="pay">
+        </div>
+      </div>
+</div>
+
+
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_ePylmuJNVmVE6l", // Enter the Key ID generated from the Dashboard
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp", //your business name
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+    "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+        "name": "Gaurav Kumar", //your customer's name
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000" //Provide the customer's phone number for better conversion rates 
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+
+{% endblock content %}
+

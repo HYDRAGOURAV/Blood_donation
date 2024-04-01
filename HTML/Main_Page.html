@@ -1,0 +1,104 @@
+{% include "Navbar.html" %}
+{% block content %}
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<style>
+  .container_1 {
+    height: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .Main_content {
+    height: 400px;
+    width: 400px;
+  }
+
+  .Main_content h1 {
+    font-size: 75px;
+  }
+
+  .card-img-top {
+    height: 300px;
+  }
+
+  .Main_content img {
+    height: 400px;
+    width: 400px;
+  }
+
+  @media screen and (max-width:450px) {
+    .container_1 {
+      flex-direction: column;
+    }
+    .Main_content{
+      text-align: center;
+    }
+    .Main_content img{
+      width:250px ;
+      height: 260px;
+      margin-top: 12px;
+    }
+  }
+</style>
+{% load static %}
+<div class="container_1">
+  <div class="Main_content">
+    <h1>Donate <span>Blood</span>
+    </h1>
+    <h3>& save a <span>Life
+
+      </span></h3>
+    <p>Donating blood saves lives by providing a crucial lifeline to those in need.</p>
+    <a href="https://en.wikipedia.org/wiki/Blood_donation" target=”_blank”><button type="button"
+        class="btn btn-outline-info">About Donation</button></a>
+  </div>
+  <div class="Main_content"> <img src="../static/images/Screenshot 2023-09-26 091637.jpg" alt=""></div>
+
+</div>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card" data-aos="zoom-in-right">
+        <img src="../static/images/blood-donation-unscreen.gif" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h4 class="card-title text-center">Donate Blood</h4>
+          <p class="card-text">A single drop of blood can make a huge difference.</p>
+          <div class="d-flex justify-content-center"><a href="{% url 'Donor_reg_page' %}"><button type="button"
+                class="btn btn-info ">Donate</button></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+        <img src="../static/images/blood-pressure-unscreen.gif" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h4 class="card-title  text-center">Search Blood</h4>
+          <p class="card-text">Find nearby blood banks offering blood services</p>
+          <div class="d-flex justify-content-center"><a href="{% url 'Search_Blood' %}"><button type="button"
+                class="btn btn-info">Search</button></a> </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" data-aos="zoom-in-left">
+        <img src="../static/images/pin-unscreen.gif" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h4 class="card-title text-center">Search By Location</h4>
+          <p class="card-text">Find nearby blood donation centers and Donor</p>
+          <div class="d-flex justify-content-center"><a href="{% url 'Search_CityName' %}"><button type="button"
+                class="btn btn-info">Search By city</button> </a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+{% endblock content %}
+
+{% include "footer.html" %}
