@@ -7,3 +7,4 @@ py manage.py runserver
 
 If static file is not working properly then run this cmd
  py manage.py collectstatic
+some More Update coming soon ........................................................................ 
