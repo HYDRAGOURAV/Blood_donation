@@ -4,8 +4,13 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import re_path as url
+from django.conf.urls.static import static
+from django.views.static import serve
 
 urlpatterns = [
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     path('', views.main_page, name='main_page'),
     path('Donor_reg_page', views.Donor_reg_page_, name='Donor_reg_page'),
     path('Donor_List', views.Donor_list, name='Donor_List'),
