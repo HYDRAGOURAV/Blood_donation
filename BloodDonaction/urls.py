@@ -16,6 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.urls import re_path as url
+from django.conf.urls.static import static
+from django.views.static import serve
 handler404 = 'bloodapp.views.error_404'
 urlpatterns = [
     path('admin/', admin.site.urls),
